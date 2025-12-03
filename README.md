@@ -1,10 +1,10 @@
 # Ufo Capture
 
-Sky observation recorder: phone or BLE external camera, motion detection, 5s countdown.
+Sky observation recorder: phone or USB external camera, motion detection, 5s countdown.
 
 ## Features
 - Phone camera recording with adjustable zoom and focus
-- External camera/telescope via BLE: auto‑discover stream URLs (RTSP/HTTP)
+- External camera/telescope via USB or ip adress : auto‑discover stream URLs (RTSP/HTTP)
 - Motion detection: auto start/stop recording on activity
 - Manual recording with 5‑second countdown to reduce shake
 - On‑device gallery for replay and sharing
@@ -17,7 +17,7 @@ Sky observation recorder: phone or BLE external camera, motion detection, 5s cou
 - Android: Android SDK (optional)
 
 ## Permissions
-- Camera, Microphone, Bluetooth (BLE)
+- Camera, Microphone, Bluetooth (BLE) ,usb connection
 
 ## Getting Started
 ```bash
