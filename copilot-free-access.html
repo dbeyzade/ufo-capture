@@ -76,6 +76,9 @@
         <p>GitHub Copilot ücretsiz kullanım sayfasına yönlendiriliyorsunuz...<br>
         <small style="font-size: 0.9em; opacity: 0.8;">Herhangi bir linke tıklayarak yönlendirmeyi iptal edebilirsiniz.</small></p>
         <div class="spinner"></div>
+        <p id="countdown" role="status" aria-live="polite" style="font-size: 1.1rem; margin-top: 1rem; font-weight: 600;">
+            Yönlendirme: <span id="seconds">5</span> saniye
+        </p>
         
         <div class="links">
             <a href="https://github.com/settings/copilot" target="_blank" rel="noopener noreferrer">
@@ -102,18 +105,36 @@
         const COPILOT_SETTINGS_URL = 'https://github.com/settings/copilot';
         const REDIRECT_DELAY_MS = 5000; // 5 saniye
         
+        // Geri sayım için değişkenler
+        let secondsRemaining = Math.floor(REDIRECT_DELAY_MS / 1000);
+        const secondsElement = document.getElementById('seconds');
+        const countdownElement = document.getElementById('countdown');
+        
+        // Her saniye geri sayımı güncelle
+        const countdownInterval = setInterval(function() {
+            secondsRemaining--;
+            if (secondsRemaining > 0) {
+                secondsElement.textContent = secondsRemaining;
+            } else {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+        
         // Otomatik yönlendirme zamanlayıcısı
         // Kullanıcı herhangi bir linke tıklarsa yönlendirme iptal edilir
         // Not: Bu script body'nin sonunda olduğu için DOM elementleri yüklenmiştir
         let redirectTimer = setTimeout(function() {
-            window.location.href = COPILOT_SETTINGS_URL;
+            window.location.assign(COPILOT_SETTINGS_URL);
         }, REDIRECT_DELAY_MS);
         
         // Event delegation kullanarak linklere tıklandığında yönlendirmeyi iptal et
         document.addEventListener('click', function(event) {
-            // tagName HTML'de büyük harf döndürür
-            if (event.target.tagName === 'A' || event.target.closest('a')) {
+            // closest() ile tıklanan element veya üst elementlerinde 'a' tag'i ara
+            if (event.target.closest('a')) {
                 clearTimeout(redirectTimer);
+                clearInterval(countdownInterval);
+                // Kullanıcıya bildirim göster
+                countdownElement.textContent = 'Yönlendirme iptal edildi';
             }
         });
     </script>
