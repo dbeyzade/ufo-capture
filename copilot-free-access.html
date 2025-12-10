@@ -98,21 +98,22 @@
     </div>
 
     <script>
-        // Copilot ayarları sayfası URL'i
+        // Konfigürasyon sabitleri
         const COPILOT_SETTINGS_URL = 'https://github.com/settings/copilot';
+        const REDIRECT_DELAY_MS = 5000; // 5 saniye
         
-        // Otomatik yönlendirme (5 saniye sonra)
+        // Otomatik yönlendirme zamanlayıcısı
         // Kullanıcı herhangi bir linke tıklarsa yönlendirme iptal edilir
         // Not: Bu script body'nin sonunda olduğu için DOM elementleri yüklenmiştir
         let redirectTimer = setTimeout(function() {
             window.location.href = COPILOT_SETTINGS_URL;
-        }, 5000);
+        }, REDIRECT_DELAY_MS);
         
-        // Kullanıcı herhangi bir linke tıkladığında otomatik yönlendirmeyi iptal et
-        document.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
+        // Event delegation kullanarak linklere tıklandığında yönlendirmeyi iptal et
+        document.addEventListener('click', function(event) {
+            if (event.target.tagName === 'A' || event.target.closest('a')) {
                 clearTimeout(redirectTimer);
-            });
+            }
         });
     </script>
 </body>
