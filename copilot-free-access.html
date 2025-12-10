@@ -76,7 +76,7 @@
         <p>GitHub Copilot ücretsiz kullanım sayfasına yönlendiriliyorsunuz...<br>
         <small style="font-size: 0.9em; opacity: 0.8;">Herhangi bir linke tıklayarak yönlendirmeyi iptal edebilirsiniz.</small></p>
         <div class="spinner"></div>
-        <p id="countdown" role="status" aria-live="polite" style="font-size: 1.1rem; margin-top: 1rem; font-weight: 600;">
+        <p id="countdown" role="status" aria-live="polite" aria-atomic="true" style="font-size: 1.1rem; margin-top: 1rem; font-weight: 600;">
             Yönlendirme: <span id="seconds">5</span> saniye
         </p>
         
@@ -117,6 +117,7 @@
                 secondsElement.textContent = secondsRemaining;
             } else {
                 clearInterval(countdownInterval);
+                countdownElement.textContent = 'Yönlendiriliyor...';
             }
         }, 1000);
         
@@ -128,9 +129,11 @@
         }, REDIRECT_DELAY_MS);
         
         // Event delegation kullanarak linklere tıklandığında yönlendirmeyi iptal et
+        // Not: Linkler normal şekilde çalışmaya devam eder, sadece otomatik yönlendirme iptal edilir
         document.addEventListener('click', function(event) {
             // closest() ile tıklanan element veya üst elementlerinde 'a' tag'i ara
-            if (event.target.closest('a')) {
+            const linkElement = event.target.closest('a');
+            if (linkElement) {
                 clearTimeout(redirectTimer);
                 clearInterval(countdownInterval);
                 // Kullanıcıya bildirim göster
