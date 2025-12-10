@@ -98,3 +98,7 @@ Known Limitations
 
 - iOS simulators do not provide camera devices; use a physical device to test capture and recording
 - External streams depend on the availability and format of the provided URL
+
+Developer Resources
+
+- **GitHub Copilot Free Access**: Open [copilot-free-access.html](./copilot-free-access.html) to access GitHub Copilot settings and free usage options for students and educators

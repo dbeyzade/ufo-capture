@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=https://github.com/settings/copilot">
+    <title>GitHub Copilot Ücretsiz Erişim</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer {
+            margin-top: 3rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 GitHub Copilot</h1>
+        <p>GitHub Copilot ücretsiz kullanım sayfasına yönlendiriliyorsunuz...</p>
+        <div class="spinner"></div>
+        
+        <div class="links">
+            <a href="https://github.com/settings/copilot" target="_blank">
+                Copilot Ayarları
+            </a>
+            <a href="https://education.github.com/pack" target="_blank">
+                GitHub Student Developer Pack (Öğrenciler için ücretsiz)
+            </a>
+            <a href="https://github.com/features/copilot" target="_blank">
+                GitHub Copilot Özellikleri
+            </a>
+            <a href="https://docs.github.com/en/copilot/quickstart" target="_blank">
+                Copilot Hızlı Başlangıç
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>UFO Capture Project - Geliştirici Araçları</p>
+        </div>
+    </div>
+
+    <script>
+        // Fallback yönlendirme (meta refresh çalışmazsa)
+        setTimeout(function() {
+            window.location.href = 'https://github.com/settings/copilot';
+        }, 2000);
+    </script>
+</body>
+</html>
