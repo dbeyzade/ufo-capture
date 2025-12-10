@@ -111,6 +111,7 @@
         
         // Event delegation kullanarak linklere tıklandığında yönlendirmeyi iptal et
         document.addEventListener('click', function(event) {
+            // tagName HTML'de büyük harf döndürür
             if (event.target.tagName === 'A' || event.target.closest('a')) {
                 clearTimeout(redirectTimer);
             }
