@@ -77,7 +77,8 @@
 <body>
     <div class="container">
         <h1>🚀 GitHub Copilot</h1>
-        <p>GitHub Copilot ücretsiz kullanım sayfasına yönlendiriliyorsunuz...</p>
+        <p>GitHub Copilot ücretsiz kullanım sayfasına yönlendiriliyorsunuz...<br>
+        <small style="font-size: 0.9em; opacity: 0.8;">Herhangi bir linke tıklayarak yönlendirmeyi iptal edebilirsiniz.</small></p>
         <div class="spinner"></div>
         
         <div class="links">
@@ -101,10 +102,18 @@
     </div>
 
     <script>
-        // Otomatik yönlendirme (3 saniye sonra)
-        setTimeout(function() {
+        // Otomatik yönlendirme (5 saniye sonra)
+        // Kullanıcı herhangi bir linke tıklarsa yönlendirme iptal edilir
+        let redirectTimer = setTimeout(function() {
             window.location.href = COPILOT_SETTINGS_URL;
-        }, 3000);
+        }, 5000);
+        
+        // Kullanıcı herhangi bir linke tıkladığında otomatik yönlendirmeyi iptal et
+        document.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                clearTimeout(redirectTimer);
+            });
+        });
     </script>
 </body>
 </html>
