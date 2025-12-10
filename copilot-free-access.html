@@ -81,16 +81,16 @@
         <div class="spinner"></div>
         
         <div class="links">
-            <a href="https://github.com/settings/copilot" target="_blank">
+            <a id="copilot-settings-link" href="" target="_blank" rel="noopener noreferrer">
                 Copilot Ayarları
             </a>
-            <a href="https://education.github.com/pack" target="_blank">
+            <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">
                 GitHub Student Developer Pack (Öğrenciler için ücretsiz)
             </a>
-            <a href="https://github.com/features/copilot" target="_blank">
+            <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer">
                 GitHub Copilot Özellikleri
             </a>
-            <a href="https://docs.github.com/en/copilot/quickstart" target="_blank">
+            <a href="https://docs.github.com/en/copilot/quickstart" target="_blank" rel="noopener noreferrer">
                 Copilot Hızlı Başlangıç
             </a>
         </div>
@@ -101,10 +101,14 @@
     </div>
 
     <script>
-        // Meta refresh kullanarak ve JavaScript fallback ile yönlendirme
-        document.querySelector('head').insertAdjacentHTML('beforeend', 
-            `<meta http-equiv="refresh" content="3; url=${COPILOT_SETTINGS_URL}">`
-        );
+        // Güvenli DOM manipülasyonu ile meta refresh ekleme
+        const metaRefresh = document.createElement('meta');
+        metaRefresh.httpEquiv = 'refresh';
+        metaRefresh.content = '3; url=' + COPILOT_SETTINGS_URL;
+        document.head.appendChild(metaRefresh);
+        
+        // Copilot Ayarları linkini güncelle
+        document.getElementById('copilot-settings-link').href = COPILOT_SETTINGS_URL;
         
         // Fallback yönlendirme
         setTimeout(function() {
