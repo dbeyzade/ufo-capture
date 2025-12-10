@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="3; url=https://github.com/settings/copilot">
     <title>GitHub Copilot Ücretsiz Erişim</title>
+    <script>
+        // Copilot ayarları sayfası URL'i
+        const COPILOT_SETTINGS_URL = 'https://github.com/settings/copilot';
+    </script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
@@ -93,14 +96,19 @@
         </div>
         
         <div class="footer">
-            <p>UFO Capture Project - Geliştirici Araçları</p>
+            <p>UFO Yakalama Projesi - Geliştirici Araçları</p>
         </div>
     </div>
 
     <script>
-        // Fallback yönlendirme (meta refresh çalışmazsa)
+        // Meta refresh kullanarak ve JavaScript fallback ile yönlendirme
+        document.querySelector('head').insertAdjacentHTML('beforeend', 
+            `<meta http-equiv="refresh" content="3; url=${COPILOT_SETTINGS_URL}">`
+        );
+        
+        // Fallback yönlendirme
         setTimeout(function() {
-            window.location.href = 'https://github.com/settings/copilot';
+            window.location.href = COPILOT_SETTINGS_URL;
         }, 3000);
     </script>
 </body>
