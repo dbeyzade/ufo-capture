@@ -119,9 +119,11 @@ class SubscriptionService extends ChangeNotifier {
   /// Upgrade to premium subscription
   Future<void> upgradeToPremium({bool isYearly = false}) async {
     final prefs = await SharedPreferences.getInstance();
-    final expirationDate = DateTime.now().add(
-      isYearly ? const Duration(days: 365) : const Duration(days: 30),
-    );
+    final now = DateTime.now();
+    // Use DateTime manipulation for accurate yearly calculations (handles leap years)
+    final expirationDate = isYearly
+        ? DateTime(now.year + 1, now.month, now.day)
+        : now.add(const Duration(days: 30));
 
     await prefs.setInt(_keySubscriptionTier, SubscriptionTier.premium.index);
     await prefs.setInt(

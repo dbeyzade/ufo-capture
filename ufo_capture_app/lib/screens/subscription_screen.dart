@@ -284,13 +284,22 @@ class SubscriptionScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: _buildComparisonCell(free, customValues?[0]),
+            child: _buildComparisonCell(
+              free,
+              customValues != null && customValues.length > 0 ? customValues[0] : null,
+            ),
           ),
           Expanded(
-            child: _buildComparisonCell(premium, customValues?[1]),
+            child: _buildComparisonCell(
+              premium,
+              customValues != null && customValues.length > 1 ? customValues[1] : null,
+            ),
           ),
           Expanded(
-            child: _buildComparisonCell(lifetime, customValues?[2]),
+            child: _buildComparisonCell(
+              lifetime,
+              customValues != null && customValues.length > 2 ? customValues[2] : null,
+            ),
           ),
         ],
       ),
