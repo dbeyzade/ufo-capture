@@ -13,6 +13,7 @@ Features
 - Sound notifications for motion and recording status
 - Screen wake management for long observation sessions
 - Trial and unlock flow via in‑app purchase
+- **Subscription Management**: View active subscription plan, models in use, and usage quotas (recordings and storage)
 How It Works
 
 - Choose camera source: device camera or IP/Wi‑Fi stream
@@ -27,12 +28,14 @@ Beyond the Visible
 - Filters improve contrast and low‑light visibility to reveal subtle phenomena
 Project Structure
 
-- Main screen: ufo_capture_app/lib/screens/camera_screen.dart
-- Intro video: ufo_capture_app/lib/screens/intro_video_screen.dart
-- Gallery: ufo_capture_app/lib/screens/gallery_screen.dart
-- Settings: ufo_capture_app/lib/screens/settings_screen.dart
-- Motion detection service: ufo_capture_app/lib/services/motion_detection_service.dart
-- Native color filter bridge (MethodChannel ufo_color_filters ): applied on saved videos when a non‑RGB mode is selected
+- Main app: lib/main.dart
+- **Subscription screen**: lib/screens/subscription_screen.dart
+- Data models: lib/models/subscription_model.dart
+- Services: lib/services/subscription_service.dart
+- Tests: test/subscription_model_test.dart
+- Future screens (planned): camera_screen.dart, gallery_screen.dart, settings_screen.dart
+- Motion detection service (planned): motion_detection_service.dart
+- Native color filter bridge (planned): applied on saved videos when a non‑RGB mode is selected
 Storage
 
 - Saved clips directory: ApplicationDocumentsDirectory/UFOCaptures
@@ -44,11 +47,15 @@ Requirements
 - Physical device recommended for full functionality (simulators lack real cameras)
 Dependencies
 
+- **provider** (^6.1.0) for state management
+- **intl** (^0.18.1) for date formatting
+- flutter_lints (^2.0.0) for code quality
+
+Future dependencies (planned):
 - camera for capture and preview
 - video_player for external streams and intro video
 - permission_handler for runtime permissions
 - path_provider and path for file storage
-- provider for state
 - wakelock_plus to keep the screen awake
 - flutter_local_notifications for alerts
 Setup
@@ -94,7 +101,17 @@ Color Modes
 Notifications
 
 - Motion detected / recording start/stop notifications for quick feedback
+## Subscription Features
+
+View your subscription information in Turkish:
+- **Abonelik Planı**: Plan name, start/end dates, remaining days
+- **Kullanılan Modeller**: Active models (RGB, Infrared, Night Vision, Motion Detection, UV)
+- **Kullanım Kotası**: Recordings and storage usage with visual indicators
+
+See [SUBSCRIPTION_FEATURE.md](SUBSCRIPTION_FEATURE.md) for detailed information.
+
 Known Limitations
 
 - iOS simulators do not provide camera devices; use a physical device to test capture and recording
 - External streams depend on the availability and format of the provided URL
+- Currently uses mock subscription data; API integration pending
