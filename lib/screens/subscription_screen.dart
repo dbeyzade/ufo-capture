@@ -8,6 +8,11 @@ import '../models/subscription_model.dart';
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
 
+  // Usage quota thresholds
+  static const double warningThreshold = 60.0;
+  static const double criticalThreshold = 80.0;
+  static const int daysWarningThreshold = 30;
+
   @override
   State<SubscriptionScreen> createState() => _SubscriptionScreenState();
 }
@@ -29,6 +34,28 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     await Provider.of<SubscriptionService>(context, listen: false)
         .refreshSubscription();
     setState(() => _isRefreshing = false);
+  }
+
+  /// Get color based on usage percentage
+  Color _getUsageColor(double percentage) {
+    if (percentage > SubscriptionScreen.criticalThreshold) {
+      return Colors.red;
+    } else if (percentage > SubscriptionScreen.warningThreshold) {
+      return Colors.orange;
+    }
+    return Colors.green;
+  }
+
+  /// Get color based on remaining days
+  Color _getDaysRemainingColor(int days) {
+    return days < SubscriptionScreen.daysWarningThreshold
+        ? Colors.orange
+        : Colors.green;
+  }
+
+  /// Format numeric value with appropriate decimal places
+  String _formatValue(num value) {
+    return value.toStringAsFixed(value is double ? 1 : 0);
   }
 
   @override
@@ -137,7 +164,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               _buildInfoRow(
                 'Kalan Süre',
                 '$daysRemaining gün',
-                valueColor: daysRemaining < 30 ? Colors.orange : Colors.green,
+                valueColor: _getDaysRemainingColor(daysRemaining),
               ),
             ],
           ],
@@ -248,11 +275,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     String unit,
     double percentage,
   ) {
-    final color = percentage > 80
-        ? Colors.red
-        : percentage > 60
-            ? Colors.orange
-            : Colors.green;
+    final color = _getUsageColor(percentage);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,7 +295,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '${used.toStringAsFixed(used is double ? 1 : 0)} / ${total.toStringAsFixed(total is double ? 1 : 0)} $unit',
+              '${_formatValue(used)} / ${_formatValue(total)} $unit',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
