@@ -13,6 +13,7 @@ Features
 - Sound notifications for motion and recording status
 - Screen wake management for long observation sessions
 - Trial and unlock flow via in‑app purchase
+- **Subscription features display** - View current subscription status, available features, and upgrade options
 How It Works
 
 - Choose camera source: device camera or IP/Wi‑Fi stream
@@ -31,7 +32,9 @@ Project Structure
 - Intro video: ufo_capture_app/lib/screens/intro_video_screen.dart
 - Gallery: ufo_capture_app/lib/screens/gallery_screen.dart
 - Settings: ufo_capture_app/lib/screens/settings_screen.dart
+- **Subscription screen: ufo_capture_app/lib/screens/subscription_screen.dart** - Display subscription features and status
 - Motion detection service: ufo_capture_app/lib/services/motion_detection_service.dart
+- **Subscription service: ufo_capture_app/lib/services/subscription_service.dart** - Manage subscription state and persistence
 - Native color filter bridge (MethodChannel ufo_color_filters ): applied on saved videos when a non‑RGB mode is selected
 Storage
 
@@ -94,7 +97,27 @@ Color Modes
 Notifications
 
 - Motion detected / recording start/stop notifications for quick feedback
+Subscription Features
+
+View your subscription status and available features:
+- Navigate to **Abonelik Özellikleri** (Subscription Features) screen
+- See current plan (Free Trial, Premium, or Lifetime)
+- View all available features with clear premium feature indicators
+- Compare subscription tiers side-by-side
+- Upgrade to premium plans (monthly, yearly, or lifetime)
+- Restore previous purchases
+
+For detailed subscription information, see [SUBSCRIPTION_FEATURES.md](SUBSCRIPTION_FEATURES.md)
+
 Known Limitations
 
 - iOS simulators do not provide camera devices; use a physical device to test capture and recording
 - External streams depend on the availability and format of the provided URL
+
+Documentation
+
+- **[QUICK_START.md](QUICK_START.md)** - Get started in 5 minutes
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Complete setup instructions
+- **[SUBSCRIPTION_FEATURES.md](SUBSCRIPTION_FEATURES.md)** - Detailed subscription features documentation
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - Technical implementation details
+- **[ufo_capture_app/README.md](ufo_capture_app/README.md)** - App-specific documentation
